@@ -1,0 +1,36 @@
+body {
+    font-family: Arial;
+  }
+
+#filter-div {
+    text-align: center;
+}
+
+#banner-div{
+  background-color: rgb(163, 163, 163);
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 22%;
+}
+
+/*
+.tabulator .tabulator-row .tabulator-cell[tabulator-field="Allocation"]{
+  background-color:#ededed;
+}
+
+.tabulator .tabulator-row .tabulator-cell[tabulator-field="Project"]{
+  background-color:#ededed;
+}
+
+.tabulator .tabulator-row .tabulator-cell[tabulator-field="InUse"]{
+  background-color:#ededed;
+}
+
+.tabulator .tabulator-row .tabulator-cell[tabulator-field="DateConfirmed"]{
+  background-color:#ededed;
+}
+*/
