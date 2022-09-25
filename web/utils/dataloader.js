@@ -2,7 +2,7 @@ require('dotenv').config()
 
 // NOTE: FIX THIS - REQUEST NEEDS TO BE ASYNC
 var request = require('request')
-var json = require('../../csvjson-min.json')
+var json = require('../../../tracking-app/csvjson-min.json')
 
 let ctr = 0
 const url = 'https://' + process.env.API_HOST + '/live/updatestatus'
@@ -11,7 +11,7 @@ const proxy = "http://localhost:9001/live/updatestatus"
 json.forEach(function(data){
 
     // proxy?
-    let endpoint = true ? proxy : url
+    let endpoint = false ? proxy : url
     console.log("sending to " + endpoint + "\n" + 
         (++ctr) + ":\n" + JSON.stringify(data))
 
