@@ -1,12 +1,48 @@
-/////////////////////////////////////////////////////////////////////////////////////
-// UPDATESTATUS
+// GetrDeviceData
 
 const AWS = require('aws-sdk')
 const ddb = new AWS.DynamoDB.DocumentClient({region: 'us-west-1'})
 
 exports.handler = async (event, context, callback) => {
 
+    let response = await getDevices()
+    return response
+};
+
+async function getDevices(){
+
+    var params = {
+        TableName: 'TranspireDevices'
+    }
+  
+    let res = null
+    await ddb.scan(params, (err, data) => {
+        if (err) { 
+            res = {
+                statusCode: 500,
+                body: "{}"
+            };
+        } else { 
+            res = {
+                statusCode: 200,
+                body: JSON.stringify(data)
+            };
+        }
+    }).promise();
+    
+    return res
+};
+
+/////////////////////////////////////////////////////
+// HandleDeviceData
+
+const AWS = require('aws-sdk')
+//const ddb = new AWS.DynamoDB.DocumentClient({region: 'us-west-1'})
+
+exports.handler = async (event, context, callback) => {
+
     //let data = JSON.parse(Buffer.from(event.body, 'base64').toString('ascii'))
+    
     let data = JSON.parse(event.body.toString('ascii'))
     let response = await updateRecord(data)
     
@@ -14,12 +50,15 @@ exports.handler = async (event, context, callback) => {
 };
 
 async function updateRecord(_data){
+    
+    console.log(_data)
 
     let params = {
         TableName: 'TranspireDevices',
         Item: {
             'TranspireCode': _data.transpirecode,
             'DeviceID': _data.deviceid,
+            'DeviceCode': _data.devicecode,
             'OS': _data.os,
             'Model': _data.model,
             'OSVersion': _data.osversion,
@@ -50,17 +89,17 @@ async function updateRecord(_data){
     return res
 };
 
-/////////////////////////////////////////////////////////////////////////////////////
-// GETUSER
+/////////////////////////////////////////////////////
+// ValidateUserPin
 
 const AWS = require('aws-sdk')
 //const ddb = new AWS.DynamoDB.DocumentClient({region: 'us-west-1'})
 
 exports.handler = async (event, context, callback) => {
 
-    //console.log(event.body.toString('ascii'))
     //let pin = JSON.parse(Buffer.from(event.body, 'base64').toString('ascii')).pin
     
+    console.log(event.body.toString('ascii'))
     let pin = JSON.parse(event.body.toString('ascii')).pin
 
     let response = await getUserRecord(pin)
@@ -97,29 +136,40 @@ async function getUserRecord(_pin){
     return res
 };
 
-/////////////////////////////////////////////////////////////////////////////////////
-// GETDEVICEDATA
+/////////////////////////////////////////////////////
+// ValidateUserPin
 
 const AWS = require('aws-sdk')
 //const ddb = new AWS.DynamoDB.DocumentClient({region: 'us-west-1'})
 
 exports.handler = async (event, context, callback) => {
 
-    let response = await getDevices()
+    let devicecode = JSON.parse(Buffer.from(event.body, 'base64').toString('ascii')).devicecode
+    //let devicecode = JSON.parse(event.body.toString('ascii')).devicecode
+    
+    console.log(devicecode)
+
+    let response = await getDevice(devicecode)
     return response
 };
 
-async function getDevices(){
+async function getDevice(code){
 
     var params = {
-        TableName: 'TranspireDevices'
+        TableName: 'TranspireDevices',
+        Key: { 'DeviceCode': code }
     }
   
-    let res = null
-    await ddb.scan(params, (err, data) => {
+   let res = null
+    await ddb.get(params, (err, data) => {
         if (err) { 
             res = {
-                statusCode: 200,
+                statusCode: 500,
+                body: "{}"
+            };
+        } else if (JSON.stringify(data) === JSON.stringify({})) {
+             res = {
+                statusCode: 404,
                 body: "{}"
             };
         } else { 
