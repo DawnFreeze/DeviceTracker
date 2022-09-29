@@ -11,7 +11,7 @@ app.use(express.static("public"))
 app.use(favicon(path.join(__dirname, 'public/images/favicon.ico')))
 
 app.get('/', (req, res) => {
-    items = db.getRecords().then(function (results) {
+    items = db.getRecordsPatched().then(function (results) {
         res.render('index', {tabledata: results})
     })
 })

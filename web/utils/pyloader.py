@@ -20,7 +20,7 @@ host = os.getenv('API_HOST')
 #proto = 'http'
 #host = '127.0.0.1:9999'
 
-f = open('../../../tracking-app/csvjson-min.json')
+f = open('../../../tracking-app/csvjson.json')
 data = json.load(f)
 
 async def main():

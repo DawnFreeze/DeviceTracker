@@ -25,4 +25,12 @@ module.exports = {
         let dc = new AWS.DynamoDB.DocumentClient()
         return dc.scan(params, onScan).promise()
     }
-};
+}
+
+module.exports = {
+    getRecordsPatched: function () {
+        var params = { TableName: "TranspireDevices" };
+           let dc = new AWS.DynamoDB.DocumentClient()
+           return dc.scan(params).promise()
+    }
+}
