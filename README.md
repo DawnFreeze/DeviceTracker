@@ -16,7 +16,7 @@ The purpose of this repository is to maintain a full system to enable trust-base
 
 ## Application
 
-This sytem utlizes an application built and compiled in FlutterFlow that allows trust-based device checkout/checkin based on a unique pin attributed to a single user, and housed in a Dynamo database. This pin is used to assign all actions performed within a given session to a single, authorized user. <br/>
+This system utilizes an application built and compiled with Flutter that allows trust-based device check-in/check-out based on a unique pin attributed to a single user and housed in a Dynamo database. This pin is used to assign all actions performed within a given session to a single, authorized user. <br/>
 
 Actions offered within the apps:
 > - Check-out Device: submit an object containing the authorized users identity attribute and a device code
@@ -77,7 +77,7 @@ TODO: architecture diagrams
 ## Database Structure
 
 DynamoDB (NoSQL)
-| Tablename | Schema |
+| Table name | Schema |
 |-------------|--------:|
 |TranspireDevices|
 |Users|
