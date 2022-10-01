@@ -62,6 +62,8 @@ My devices - no allocated devices
 
 The backend consists of an AWS Gateway API which routes to dedicated Lambda integrations, each of which have full access rights to a DynamoDB table set.
 
+All routes secured, ```x-api-key``` key required.
+
 ### Gateway API routes:
 | Route| operation|Integration|Table|
 |-------------|:-------|:-------------|-----:|
