@@ -2,6 +2,10 @@
 
 The purpose of this repository is to maintain a full system to enable trust-based device tracking within development teams.
 
+<br/>
+
+![system arch](./assets/readme-assets/arch1.png)
+
 <hr/>
 
 ### Table of Contents  
