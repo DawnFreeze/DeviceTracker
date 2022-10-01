@@ -62,7 +62,7 @@ My devices - no allocated devices
 
 The backend consists of an AWS Gateway API which routes to dedicated Lambda integrations, each of which have full access rights to a DynamoDB table set.
 
-All routes secured, ```x-api-key``` key required.
+All routes secured, ```x-api-key``` header required.
 
 ### Gateway API routes:
 | Route| operation|Integration|Table|
@@ -79,8 +79,8 @@ TODO: architecture diagrams
 ## Database Structure
 
 DynamoDB (NoSQL)
-| Table name | Schema |
-|-------------|--------:|
+| Table name |
+|-------------|
 |TranspireDevices|
 |Users|
 
