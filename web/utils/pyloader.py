@@ -28,7 +28,7 @@ async def main():
     async with aiohttp.ClientSession() as session:
         for x in data:
             async with session.post(proto + '://' + host + '/live/updatestatus', json=x,
-                headers={'Host':host}) as resp:
+                headers={'Host':host, 'x-api-key': '[REDACTED]'}) as resp:
                 print('. update res [' + str(resp.status) + ']')
 
 asyncio.run(main())
