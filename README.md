@@ -20,11 +20,11 @@ The purpose of this repository is to maintain a full system to enable trust-base
 
 ## Application
 
-This system utilizes an application built and compiled with Flutter that allows trust-based device check-in/check-out based on a unique pin attributed to a single user and housed in a Dynamo database. This pin is used to assign all actions performed within a given session to a single, authorized user. <br/>
+This system utilizes an application built and compiled with Flutter that allows trust-based device check-in/check-out dependent on a unique pin attributed to a single user and housed in a Dynamo database. This pin is used to assign all actions performed within a given session to a single, authorized user. <br/>
 
 Actions offered within the apps:
-> - Check-out Device: submit an object containing the authorized users identity attribute and a device code
-> - Check-in Device: Remove the 'in-use' attribute and move the current user to the status of previous user
+> - Check-out Device: Provide details of current device status and usage. On submission, pass an object containing the authorized users identity attribute and a device code, and update the bd with the new details + toggle in-use status.
+> - Check-in Device: Provide device details containing the current user, and confirm clearing allocation details. On submission, pass an object containing the authorized users identity attribute and a device code, and update the bd by clearing all allocation details + toggle in-use status.
 
 Application flow chart:
 
@@ -75,8 +75,6 @@ All routes secured, ```x-api-key``` header required.
 | /getdevices| GET|GetDeviceData|TranspireDevices|
 | /getuser| POST|ValidateUserPin|Users|
 | /updatestatus| POST|HandleDeviceData|TranspireDevices|
-
-TODO: architecture diagrams
 
 <hr/>
 
