@@ -1,4 +1,4 @@
-# QA Device Tracker V1.0
+# Device Tracker v1.0
 
 The purpose of this repository is to maintain a full system to enable trust-based device tracking within development teams.
 
