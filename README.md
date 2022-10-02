@@ -4,7 +4,7 @@ The purpose of this repository is to maintain a full system to enable trust-base
 
 <br/>
 
-![system arch](./assets/readme-assets/arch1.png)
+![system arch](./assets/arch.png)
 
 <hr/>
 
